@@ -3,8 +3,11 @@
 #include "lib.h"
 
 int main(int argc, char *argv[]) {
+    if (argc < 4) { printf("Not enough parameters\n"); exit(1); }
+
     char* numberToConvert = argv[1];
-    int baseToConvert = atoi(argv[2]);
-    int test = ConvertToBase(numberToConvert, baseToConvert);
-    printf("%d\n", test);
+    int numberBase = atoi(argv[2]);
+    int baseToConvert = atoi(argv[3]);
+    char* test = Convert(numberToConvert, numberBase, baseToConvert);
+    printf("%s\n", test);
 }
