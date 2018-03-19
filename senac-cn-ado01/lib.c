@@ -4,7 +4,7 @@
 #include <math.h>
 #include "lib.h"
 
-int ConvertToDecimal(char value) {
+int ConvertCharToDecimal(char value) {
     if (value >= '0' && value <= '9') 
         return (int) value - '0';
     else
@@ -18,29 +18,38 @@ char ConvertToBase(int value) {
         return (char)(value - 10 + 'A');
 }
 
-char* Convert(char *NumberToConvert, int NumberBase, int BaseToConvert) {
-    int i = 0, decimalValue = 0;
+long int Power(int value, int power) {
+    long int response = 1;
+    for (int i = 0; i < power; i++)
+        response *= value;
 
-    if (NumberBase == BaseToConvert) { return NumberToConvert; }
+    return response;
+}
 
-    int len = strlen(NumberToConvert);
-    for (i = 0; i < len; i++) 
+long int ConvertToDecimal(char* value, int NumberBase) {
+    int len = strlen(value);
+    long int decimalValue = 0;
+    for (int i = 0; i < len; i++) 
     {
-        int Value = (int)NumberToConvert[len - i - 1];
-        decimalValue += ConvertToDecimal(Value) * pow(NumberBase, i);
+        int Value = (int)value[len - 1 - i];
+        decimalValue += ConvertCharToDecimal(Value) * Power(NumberBase, i);
     }
 
-    char* convertedNumber = (char*) calloc(50, 50 * sizeof(char));
+    return decimalValue;
+}
+
+char* Convert(long int NumberToConvert, int BaseToConvert) {
+    char* convertedNumber = (char*) calloc(10000, 10000 * sizeof(char));
     int index = 0;
-    while (decimalValue > 0) 
+    while (NumberToConvert > 0) 
     {
-        convertedNumber[index++] = ConvertToBase(decimalValue % BaseToConvert);
-        decimalValue /= BaseToConvert;
+        convertedNumber[index++] = ConvertToBase(NumberToConvert % BaseToConvert);
+        NumberToConvert /= BaseToConvert;
     }
     convertedNumber[index] = '\0';
 
     int n = strlen(convertedNumber);
-    for (i = 0; i < n/2; i++) 
+    for (int i = 0; i < n/2; i++) 
     {
         char temp = convertedNumber[i];
         convertedNumber[i] = convertedNumber[n-i-1];

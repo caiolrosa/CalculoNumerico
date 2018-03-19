@@ -1,0 +1,11 @@
+O algoritmo recebe uma entrada em qualquer base e faz a conversão para
+base 10, com o valor em base 10 é feita a conversão para a base desejada
+a entrada para o programa deve ser como: 
+    "./n2m <número a converter> <base do número> <base desejada>"
+
+A conversão para base 10 é feita comparando a distancia do char de entrada 
+com o valor dele na tabela ASC que, por sua vez, é somada a um numero decimal, 
+a soma de todos estes caracteres retorna a conversão para base 10.
+A conversão para qualquer outra base é feita a partir da conversão para base 10 
+utilizando o método da divisão, no qual são feitas sucessivas divisões pela base 
+desejada e o resto guardado para no final termos a conversão para a base desejada.

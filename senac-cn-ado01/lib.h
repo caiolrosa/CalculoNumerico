@@ -1,3 +1,5 @@
-char* Convert(char *NumberToConvert, int NumberBase, int BaseToConvert);
+char* Convert(long int NumberToConvert, int BaseToConvert);
 char ConvertToBase(int value);
-int ConvertToDecimal(char value);
+int ConvertCharToDecimal(char value);
+long int ConvertToDecimal(char* value, int NumberBase);
+long int Power(int value, int power);
