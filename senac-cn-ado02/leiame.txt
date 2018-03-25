@@ -1,0 +1,10 @@
+O código fonte foi separado em 3 arquivos, lib.c que contém a implementação
+das funções presentes no lib.h, o trig.c que contém a função main para a
+execução das chamadas das funções implementadas e gerção dos gráficos com o
+utilitário gnuplot.
+
+Para a implementação da função seno e cosseno foi utilizada a série de taylor
+que se apresenta da seguinte forma para cada caso
+
+SENO(x): Somatorio((-1ˆk * (xˆ2k+1)) / (2k + 1)!)
+COSSENO(x): Somatorio(-1ˆk * xˆ2k / 2k!)
