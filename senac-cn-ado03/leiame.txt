@@ -1,0 +1,11 @@
+A estrutura do projeto se encontra da seguinte forma:
+lib.c:
+    contém as implementações das funções declaradas no lib.h, dentre elas temos 
+    as três implementações do cálculo do número de euler que é dado da seguinte 
+    forma: limite(1 + 1/n)^n sendo n um valor entre 10^0 e 10^20. Cada uma das 
+    três implementações fornece o resultado com precisões diferentes (float,
+    double e long double).
+
+euler.c:
+    contém o método main, a configuração do gnuplot para a exibição dos
+    gráficos gerados e as chamadas das funções implementadas no lib.c.

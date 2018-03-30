@@ -7,9 +7,7 @@ double Sin(double value)
 {
     double result = 0;
     for(int i = 0; i < 16; i++)
-    {
         result += (Power(-1, i) * Power(value, 2 * i + 1)) / Factorial(2 * i + 1);
-    }
 
     return result;
 }
@@ -18,9 +16,7 @@ double Cos(double value)
 {
     double result = 0;
     for(int i = 0; i < 16; i++)
-    {
         result += (Power(-1, i) * Power(value, 2 * i)) / Factorial(2 * i);
-    }
 
     return result;
 }
