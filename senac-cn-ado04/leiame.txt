@@ -1,0 +1,17 @@
+bissec.f95:
+
+O método da bissecante apresenta a idéia de algoritmos "dividir para conquistar", calculado o intervalo a partir dos dados 
+de entrada, são feitas sucessivas divisões dentro de um loop até que a precisão desejada seja alcançada ou o máximo de 
+repetições seja atingido.
+
+newton.f95:
+
+O método de newton é bastante similar ao da bissecante, a diferença entre os dois métodos está na maneira de fazer a redução
+do intervalo, no caso de newton a redução não é necessáriamente a metade como é no caso da bissecante, o método roda em um loop
+até que o a precisão desejada ou o número máximo de iterações sejam alcançados.
+
+secante.f95:
+
+O método da secante é similar aos métodos apresentados anteriormente, assim como o de newton a diferença está na maneira de
+fazer a redução do intervalo. O algoritmo roda em um loop até que o valor da aproximação da raiz ao quadrado seja igual ao
+valor de input ou a precisão desejada seja alcançada.
