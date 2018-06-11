@@ -1,8 +1,8 @@
 SUBROUTINE get_ranking(matrix)
 	INTEGER :: matrixSize, i
-	DOUBLE PRECISION :: matrixSizeDBL, threshold, temp, m
+	DOUBLE PRECISION :: matrixSizeDBL, threshold, m
 	DOUBLE PRECISION, DIMENSION(:,:) :: matrix
-	DOUBLE PRECISION, DIMENSION(:,:), ALLOCATABLE :: S, ranking
+	DOUBLE PRECISION, DIMENSION(:,:), ALLOCATABLE :: S, ranking, ltemp
 	
 	statusCode = 123
 	threshold = 1E-5
@@ -18,9 +18,10 @@ SUBROUTINE get_ranking(matrix)
 
 	ALLOCATE(S(matrixSize, 1))
 	ALLOCATE(ranking(matrixSize, 1))
+	ALLOCATE(ltemp(matrixSize, 1))
 	
 	DO i = 1, matrixSize
-		S(i,1) = (1.0 / matrixSize) 
+		S(i,1) = m * (1.0 / matrixSize)
 		ranking(i,1) = 1.0 / matrixSize
 	END DO
 
@@ -29,12 +30,14 @@ SUBROUTINE get_ranking(matrix)
 			matrix(i,j) = (1.0-m) * matrix(i,j)  
 		END DO
 	END DO
-	
-	temp = 1
-	DO WHILE (ABS(temp -  ranking(1,1)) > threshold)
-		temp = ranking(1,1)
-		matrix = matmul(matrix, matrix)
-	    ranking = matmul(matrix, S)
+
+	DO WHILE (ABS(ltemp(1,1) - ranking(1,1)) > threshold)
+		ltemp = ranking
+	    ranking = matmul(matrix, ltemp)
+
+		DO i = 1, matrixSize
+			ranking(i, 1) = ranking(i, 1) + S(i, 1)
+		END DO
 	END DO
 
 	DO i=1, matrixSize
@@ -43,4 +46,5 @@ SUBROUTINE get_ranking(matrix)
 	
 	DEALLOCATE(S)
 	DEALLOCATE(ranking)
+	DEALLOCATE(ltemp)
 END SUBROUTINE
