@@ -5,7 +5,6 @@ SUBROUTINE get_ranking(matrix)
 	DOUBLE PRECISION, DIMENSION(:,:) :: matrix
 	DOUBLE PRECISION, DIMENSION(:,:), ALLOCATABLE :: S, ranking, ltemp
 	
-	statusCode = 123
 	threshold = 1E-5
 	m = 0.15
 
@@ -40,21 +39,19 @@ SUBROUTINE get_ranking(matrix)
 		END DO
 	END DO
 
-	i = 0
-	DO WHILE(i < matrixSize)
-		PRINT *, matrixSize
+	PRINT *, "   Iteracao", " |", "      Pagina", " |", "  Peso"
+	DO i = 1, matrixSize
 		greater = 0
 		current = 0
-		DO i = 1, matrixSize
-			IF (ranking(i, 1) > 0 .AND. ranking(i, 1) > greater) THEN
-				greater = ranking(i, 1)
-				current = i
+		DO j = 1, matrixSize
+			IF (ranking(j, 1) > 0 .AND. ranking(j, 1) > greater) THEN
+				greater = ranking(j, 1)
+				current = j
 			END IF
 		END DO
 
 		ranking(current, 1) = -1
-		i = i + 1
-		PRINT *, i,"- Pagina",current,"--- peso",greater
+		PRINT *, i, "|", current, "|", greater
 	END DO
 	
 	DEALLOCATE(S)
